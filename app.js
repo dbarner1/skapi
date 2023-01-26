@@ -2,6 +2,7 @@ const http = require('http')
 const https = require('https')
 const Koa = require('koa');
 const app = new Koa();
+const movies = require('./movies.json');
 
 /*
   MIDDLEWARE
@@ -27,8 +28,8 @@ app.use(async ctx => {
   const { request } = ctx;
   if(request.url === '/') {
     ctx.body = 'Welcome to the Scratch Kitchen'
-  } else {
-    ctx.body = 'Page not found.';
+  } else if (request.url === '/movies') {
+    ctx.body = movies;
   }
 });
 
